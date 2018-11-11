@@ -1,0 +1,60 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Adicionar Item</mat-card-title>
+        </mat-card-header>
+        <mat-card-content *ngIf="categorias">
+          <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Entre o patrimonio</mat-label>
+              <input matInput type="number" formControlName="patrimonio">
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-select placeholder="Unidade" formControlName="unidade">
+                <mat-option *ngFor="let unidade of unidades.unidades; index as i" [value]="i">
+                  {{ unidade.nome }} - {{ unidade.sigla }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-select placeholder="Categoria" formControlName="categoria">
+                <mat-option *ngFor="let categoria of categorias.categorias; index as j" [value]="j">
+                  {{ categoria.nome }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Entre o responsavel</mat-label>
+              <input matInput type="text" formControlName="responsavel">
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Entre a localizacao</mat-label>
+              <input matInput type="text" formControlName="localizacao">
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Entre o complemento</mat-label>
+              <input matInput type="text" formControlName="complemento">
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-select placeholder="Selecione o status" formControlName="status">
+                <mat-option value="Em ordem">Em ordem</mat-option>
+                <mat-option value="Aguardando Avalidação">Aguardando Avalidação</mat-option>
+                <mat-option value="Quebrado">Quebrado</mat-option>
+                <mat-option value="Em manutenção">Em manutenção</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Entre a descricao</mat-label>
+              <input matInput type="text" formControlName="descricao">
+            </mat-form-field>
+            <div class="text-right">
+              <button mat-raised-button color="primary" [disabled]="!addItemForm.valid" type="submit" class="mt-2 mr-3">Enviar</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

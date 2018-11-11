@@ -1,0 +1,63 @@
+<div class="container my-2">
+  <div class="row">
+    <div class="col-md-12 mx-auto" *ngIf="itens">
+
+      <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="pesquisaForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="standard" class="d-block">
+              <mat-select formControlName="unidade">
+                <mat-option *ngFor="let unidade of unidades.unidades;" [value]="unidade._id">
+                  {{ unidade.nome }} - {{ unidade.sigla }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="d-block">
+              <mat-select placeholder="Selecione o status" formControlName="status">
+                <mat-option value="Todos">Todos</mat-option>
+                <mat-option value="Em ordem">Em ordem</mat-option>
+                <mat-option value="Aguardando Avalidação">Aguardando Avalidação</mat-option>
+                <mat-option value="Quebrado">Quebrado</mat-option>
+                <mat-option value="Em manutenção">Em manutenção</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="text-right">
+              <button mat-raised-button color="primary" type="submit" class="ml-auto">Filtrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-list>
+            <mat-list-item *ngFor="let item of itens.itens">
+              <div *ngIf="item.status === 'Quebrado'">
+                <mat-chip-list>
+                  <mat-chip color="warn" selected></mat-chip>
+                </mat-chip-list>
+              </div>
+              <div *ngIf="item.status === 'Aguardando Avalidação'">
+                <mat-chip-list>
+                  <mat-chip color="accent" selected></mat-chip>
+                </mat-chip-list>
+              </div>
+              <div *ngIf="item.status === 'Em manutenção'">
+                <mat-chip-list>
+                  <mat-chip color="accent" selected></mat-chip>
+                </mat-chip-list>
+              </div>
+              <div *ngIf="item.status === 'Em ordem'">
+                <mat-chip-list>
+                  <mat-chip color="primary" selected></mat-chip>
+                </mat-chip-list>
+              </div>
+              <a matLine routerLink="/item/{{item.patrimonio}}">{{ item.nomeCategoria }}</a>
+              <p matLine>{{ item.patrimonio }}</p>
+              <mat-divider matLine></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<mat-sidenav-container style="height: 100vh;">
+  <!-- Menu lateral mobile -->
+  <mat-sidenav #snav mode="over" [fixedInViewport]="true" class="sidenav">
+    <img class="my-2 mx-3" height="60px" routerLink="/" src="assets/logo.png" alt="logo" /><br>
+
+    <div *ngIf="!authService.logged; else elseBlock1">
+      <button class="my-2 mx-2" mat-button routerLink="/itens">Itens</button><br>
+      <button class="my-2 mx-2" mat-button routerLink="/entrar">Entrar</button><br>
+      <button class="my-2 mx-2" mat-button routerLink="/registrar">Registrar</button>
+    </div>
+    <ng-template #elseBlock1>
+      <button class="my-2 mx-2" mat-button routerLink="/itens">Itens</button><br />
+      <button class="my-2 mx-2" mat-button routerLink="/solicitacao">Solicitação</button><br />
+      <button class="my-2 mx-2" mat-button routerLink="/add-item">Adicionar Item</button><br />
+      <button class="my-2 mx-2" mat-button routerLink="/">{{ authService.loggedUserName }}</button><br />
+      <button class="my-2 mx-2" mat-button (click)="logout()">Sair</button>
+    </ng-template>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="d-flex flex-column">
+    <!-- Menu superior -->
+    <div class="sticky-top" style="background: rgb(250, 250, 250);">
+      <div class="container d-flex justify-content-between align-items-center">
+        <img class="my-1" height="60px" routerLink="/" src="assets/logo.png" alt="logo" />
+        <button class="mobile2 ml-auto" mat-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <div *ngIf="!authService.logged; else elseBlock2">
+          <button class="mobile" mat-button routerLink="/itens">Itens</button>
+          <button class="mobile" mat-button routerLink="/entrar">Entrar</button>
+          <button class="mobile" mat-button routerLink="/registrar">Registrar</button>
+        </div>
+        <ng-template #elseBlock2>
+          <div>
+            <button class="mobile" mat-button routerLink="/itens">Itens</button>
+            <button class="mobile" mat-button routerLink="/solicitacao">Solicitação</button>
+            <button class="mobile" mat-button routerLink="/add-item">Adicionar Item</button>
+            <button class="mobile" mat-button routerLink="/">{{ authService.loggedUserName }}</button>
+            <button class="mobile" mat-button (click)="logout()">Sair</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

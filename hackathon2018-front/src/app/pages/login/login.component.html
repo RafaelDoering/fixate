@@ -1,0 +1,30 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Entrar</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Entre seu email</mat-label>
+              <input matInput type="email" formControlName="email" placeholder="example@example.com">
+              <mat-hint *ngIf="error === 'Email não existente.' && !loginForm.value.email" style="color: red;">{{ error
+                }}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Entre sua senha</mat-label>
+              <input matInput type="password" formControlName="password">
+              <mat-hint *ngIf="error === 'Senha incorreta.' && !loginForm.value.password" style="color: red;">{{ error
+                }}</mat-hint>
+            </mat-form-field>
+            <div class="text-right">
+              <button mat-raised-button color="primary" [disabled]="!loginForm.valid" type="submit" class="mt-2 mr-3">Enviar</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

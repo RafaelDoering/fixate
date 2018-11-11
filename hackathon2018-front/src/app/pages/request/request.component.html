@@ -1,0 +1,27 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Solicitação</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="solicitacaoForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Número do patrimônio</mat-label>
+              <input matInput type="number" formControlName="patrimonio" placeholder="055006438">
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Descrição</mat-label>
+              <input matInput formControlName="descricao" maxlength="256" placeholder="Descrição do problema">
+              <mat-hint align="end">{{ solicitacaoForm.value.descricao.length }} / 256</mat-hint>
+            </mat-form-field>
+            <div class="text-right">
+              <button mat-raised-button color="primary" [disabled]="!solicitacaoForm.valid" type="submit" class="mt-2 mr-3">Enviar</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

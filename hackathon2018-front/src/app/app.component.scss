@@ -1,0 +1,24 @@
+.mat-toolbar.mat-primary {
+  background: #102B52;
+}
+
+.sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+@media screen and (max-width: 767px) {
+  .mobile {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mobile2 {
+    visibility: hidden;
+    display: none;
+  }
+}

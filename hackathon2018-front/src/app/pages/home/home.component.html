@@ -1,0 +1,18 @@
+<agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onMapClick($event)">
+  <div *ngIf="lats">
+    <agm-marker *ngFor="let lat of lats; index as i" [latitude]="lats[i]" [longitude]="lngs[i]" iconUrl="assets/{{status[i]}}">
+      <agm-info-window><a routerLink="/item/{{patrimonios[i]}}">{{ categorias[i] }}</a></agm-info-window>
+    </agm-marker>
+  </div>
+</agm-map>
+
+<div class="container">
+  <div class="row" *ngIf="emOrdem">
+    <div class="col-md-3">
+      <p class="pl-5" style="border-bottom: solid green;font-size: 18px"><b style="font-size: 24px">{{ quebrados }}</b> concertados</p>
+    </div>
+    <div class="col-md-3 ml-auto">
+      <p class="pl-5" style="border-bottom: solid red;font-size: 18px"><b style="font-size: 24px">{{ emOrdem }}</b> quebrados</p>
+    </div>
+  </div>
+</div>

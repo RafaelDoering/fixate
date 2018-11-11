@@ -1,0 +1,61 @@
+<div class="container my-3">
+  <div class="row" style="padding: 15px;">
+    <div class="col-md-6 mx-auto" *ngIf="unidade">
+      <mat-card>
+        <mat-card-content>
+          <div class="head">
+            <mat-card-title>{{ item.nomeCategoria }}</mat-card-title>
+            <div class="row container" style="font-style: italic; text-align: center; border-bottom: 1px solid orange">
+              <mat-icon class="mat-icon-rtl-mirror">place</mat-icon>
+              <p>USP {{ unidade.campus }} - {{ unidade.sigla }} - {{ unidade.nome }}</p>
+            </div>
+          </div>
+          <div class="informacao" style="margin-top:15px">
+            <p>{{ item.localizacao }} - {{ item.complemento }}</p>
+            <p>Responsavel: {{ item.responsavel }}</p>
+            <p>Descrição: {{ item.descricao }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <br>
+      <mat-card>
+        <mat-card-content>
+          <div *ngIf="item.status === 'Quebrado'">
+            <mat-progress-bar mode="determinate" value="15" color="warn"></mat-progress-bar>
+          </div>
+          <div *ngIf="item.status === 'Aguardando Avalidação'">
+            <mat-progress-bar mode="determinate" value="43" color="accent"></mat-progress-bar>
+          </div>
+          <div *ngIf="item.status === 'Em manutenção'">
+            <mat-progress-bar mode="determinate" value="80" color="accent"></mat-progress-bar>
+          </div>
+          <div *ngIf="item.status === 'Em ordem'">
+            <mat-progress-bar mode="determinate" value="100" color="primary"></mat-progress-bar>
+          </div>
+          <p>Status: {{ item.status }}</p>
+        </mat-card-content>
+      </mat-card>
+      <br>
+      <mat-card>
+        <mat-card-content class="text-center">
+          <p>Avançar para próxima etapa:</p>
+          <form [formGroup]="avancarEtapaForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="standard" class="mx-3 d-block">
+              <mat-label>Entre a descrição</mat-label>
+              <input matInput type="text" formControlName="descricao">
+            </mat-form-field>
+            <div *ngIf="item.status === 'Quebrado' || item.status === 'Aguardando Avalidação'">
+              <button mat-flat-button color="accent" class="m-1" style="width: 100%" type="submit">Em manutenção</button>
+            </div>
+            <div *ngIf="item.status === 'Em manutenção'">
+              <button mat-flat-button color="primary" class="m-1" style="width: 100%" type="submit">Em ordem</button>
+            </div>
+            <div *ngIf="item.status === 'Em ordem'">
+              <button mat-flat-button color="warn" class="m-1" style="width: 100%" type="submit">Quebrado</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
